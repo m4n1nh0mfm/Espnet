@@ -7,13 +7,55 @@ namespace EsporteNet.Models.Local
 {
     public class Local
     {
-        private int fk_cod_usu {get; set;}
-        private int cep {get; set;}
-        private string endereco {get; set;}
-        private int numero {get; set;}
-        private string bairro {get; set;}
-        private string cidade {get; set;}
-        private string uf {get; set;}
+        private int fk_cod_usu;
+
+        public int Fk_cod_usu
+        {
+            get { return fk_cod_usu; }
+            set { fk_cod_usu = value; }
+        }
+        private int cep;
+
+        public int Cep
+        {
+            get { return cep; }
+            set { cep = value; }
+        }
+        private string endereco;
+
+        public string Endereco
+        {
+            get { return endereco; }
+            set { endereco = value; }
+        }
+        private int numero;
+
+        public int Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+        private string bairro;
+
+        public string Bairro
+        {
+            get { return bairro; }
+            set { bairro = value; }
+        }
+        private string cidade;
+
+        public string Cidade
+        {
+            get { return cidade; }
+            set { cidade = value; }
+        }
+        private string uf;
+
+        public string Uf
+        {
+            get { return uf; }
+            set { uf = value; }
+        }
 
         public Local() { }
         public Local(int fk_cod_usu) 

@@ -7,15 +7,69 @@ namespace EsporteNet.Models.Movimentacao
 {
     public class Movimentacao
     {
-        private DateTime dt_anomes {get; set;}
-        private int fk_cod_usu {get; set;}
-        private int sequencia {get; set;}
-        private string dsc_tipo{get; set;}
-        private int num_apostas{get; set;}
-        private float vlt_bruto {get; set;}
-        private float vlt_pago {get; set;}
-        private float vlt_comis {get; set;}
-        private float vlt_liquid{get; set;}
+        private DateTime dt_anomes;
+
+        public DateTime Dt_anomes
+        {
+            get { return dt_anomes; }
+            set { dt_anomes = value; }
+        }
+        private int fk_cod_usu;
+
+        public int Fk_cod_usu
+        {
+            get { return fk_cod_usu; }
+            set { fk_cod_usu = value; }
+        }
+        private int sequencia;
+
+        public int Sequencia
+        {
+            get { return sequencia; }
+            set { sequencia = value; }
+        }
+        private string dsc_tipo;
+
+        public string Dsc_tipo
+        {
+            get { return dsc_tipo; }
+            set { dsc_tipo = value; }
+        }
+        private int num_apostas;
+
+        public int Num_apostas
+        {
+            get { return num_apostas; }
+            set { num_apostas = value; }
+        }
+        private float vlt_bruto;
+
+        public float Vlt_bruto
+        {
+            get { return vlt_bruto; }
+            set { vlt_bruto = value; }
+        }
+        private float vlt_pago;
+
+        public float Vlt_pago
+        {
+            get { return vlt_pago; }
+            set { vlt_pago = value; }
+        }
+        private float vlt_comis;
+
+        public float Vlt_comis
+        {
+            get { return vlt_comis; }
+            set { vlt_comis = value; }
+        }
+        private float vlt_liquid;
+
+        public float Vlt_liquid
+        {
+            get { return vlt_liquid; }
+            set { vlt_liquid = value; }
+        }
 
         public Movimentacao() { }
         public Movimentacao(DateTime dt_anomes, int fk_cod_usu, int sequencia)
