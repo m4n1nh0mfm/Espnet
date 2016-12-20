@@ -42,30 +42,30 @@ namespace EsporteNet.Models.Movimentacao
             get { return num_apostas; }
             set { num_apostas = value; }
         }
-        private float vlt_bruto;
+        private double vlt_bruto;
 
-        public float Vlt_bruto
+        public double Vlt_bruto
         {
             get { return vlt_bruto; }
             set { vlt_bruto = value; }
         }
-        private float vlt_pago;
+        private double vlt_pago;
 
-        public float Vlt_pago
+        public double Vlt_pago
         {
             get { return vlt_pago; }
             set { vlt_pago = value; }
         }
-        private float vlt_comis;
+        private double vlt_comis;
 
-        public float Vlt_comis
+        public double Vlt_comis
         {
             get { return vlt_comis; }
             set { vlt_comis = value; }
         }
-        private float vlt_liquid;
+        private double vlt_liquid;
 
-        public float Vlt_liquid
+        public double Vlt_liquid
         {
             get { return vlt_liquid; }
             set { vlt_liquid = value; }

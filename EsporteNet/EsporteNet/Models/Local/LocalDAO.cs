@@ -63,7 +63,7 @@ namespace EsporteNet.Models.Local
                                              [BAIRRO],
                                              [CIDADE],
                                              [UF]) 
-                                    VALUES (@COD_USU,
+                                    VALUES (@FK_COD_USU,
                                             @CEP,
                                             @ENDERECO,
                                             @NUMERO,
