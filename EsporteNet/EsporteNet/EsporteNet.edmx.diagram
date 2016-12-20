@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e7c0f30dbac472b96bcc5debe614db0" Name="Diagram1">
+        <EntityTypeShape EntityType="EsporteNetModel.CONTATO_USU" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsporteNetModel.LOCAL_USU" Width="1.5" PointX="5.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsporteNetModel.MOVE_APOSTAS" Width="1.5" PointX="5.875" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsporteNetModel.USUARIO" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="EsporteNetModel.FK__USUARIO__COD_USU__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="EsporteNetModel.FK_CONTATO_USU" ManuallyRouted="false" />
+        <AssociationConnector Association="EsporteNetModel.FK__USUARIO__COD_USU__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="EsporteNetModel.FK_LOCAL_USU" ManuallyRouted="false" />
+        <AssociationConnector Association="EsporteNetModel.FK_MOVE_APOSTAS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
