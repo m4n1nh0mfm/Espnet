@@ -58,7 +58,7 @@ namespace EsporteNet.Models.Usuario
                                             ([COD_USU],
                                              [DSC_USERNAME],
                                              [PASSWORD],
-                                             [COD_SUP]
+                                             [COD_SUP],
                                              [DSC_NOME_USU]) 
                                     VALUES (@COD_USU,
                                             @DSC_USERNAME,
