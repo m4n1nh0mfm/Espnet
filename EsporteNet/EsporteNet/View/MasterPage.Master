@@ -28,7 +28,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <asp:HyperLink runat="server" NavigateUrl="~/View/index.aspx">Home</asp:HyperLink></li>
-                    <li><a href="#">Importar Dados</a></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/View/ImportDados.aspx">Importar Dados</asp:HyperLink></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Relações<span class="caret"></span></a>
                         <ul class="dropdown-menu">
