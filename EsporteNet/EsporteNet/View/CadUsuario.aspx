@@ -8,10 +8,17 @@
             <asp:Panel ID="USUARIO" CssClass="form-group" runat="server">
                 <h2 class="text-center">Cadastro de Usuário</h2>
                 <asp:Panel CssClass="form-group" runat="server">
+                    <label for="NOME" class="col-sm-3 control-label">Nome do Usuário</label>
+                    <asp:Panel runat="server" CssClass="col-sm-9">
+                        <asp:TextBox runat="server" ID="NOME" CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvNome" SetFocusOnError="true"  ControlToValidate="NOME" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
+                    </asp:Panel>
+                </asp:Panel>
+                <asp:Panel CssClass="form-group" runat="server">
                     <label for="USER" class="col-sm-3 control-label">Usuario</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="USER" CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvUSER" SetFocusOnError="true"  ControlToValidate="USER" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="RequiredFieldValidator1" SetFocusOnError="true"  ControlToValidate="USER" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">
@@ -25,6 +32,12 @@
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="RSENHA" CssClass="form-control" MaxLength="32" TextMode="Password"></asp:TextBox>
                         <asp:CompareValidator runat="server" ID="cvRSENHA" ControlToCompare="SENHA" ControlToValidate="RSENHA" Display="Dynamic" ForeColor="Red" ErrorMessage="*A senha não confere"></asp:CompareValidator>
+                    </asp:Panel>
+                </asp:Panel>
+                <asp:Panel CssClass="form-group" runat="server">
+                    <label for="CODSUP" class="col-sm-3 control-label">Codigo do Supervisor</label>
+                    <asp:Panel runat="server" CssClass="col-sm-3">
+                        <asp:TextBox runat="server" ID="CODSUP" CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
                     </asp:Panel>
                 </asp:Panel>
             </asp:Panel>
@@ -97,18 +110,37 @@
                     <label for="EMAIL" class="col-sm-3 control-label">Email</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="EMAIL" CssClass="form-control" MaxLength="200" TextMode="Email"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvEMAIL" SetFocusOnError="true"  ControlToValidate="EMAIL" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red">
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server" ID="revEMAIL1"
+                            ControlToValidate="EMAIL"
+                            Display="Dynamic"
+                            ValidationExpression="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$"
+                            ErrorMessage="Por Favor Preencher Com um Email Valido!" />
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">
                     <label for="FIXO1" class="col-sm-3 control-label">Fone Fixo</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="FIXO" CssClass="form-control" MaxLength="20" TextMode="Phone"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvFixo" ControlToValidate="FIXO" ErrorMessage="(*) O telefone fixo é obrigatório!" ToolTip="O telefone fixo é obrigatório!" BackColor="Red"></asp:RequiredFieldValidator>
+						<asp:RegularExpressionValidator runat="server" ID="rqvFixo1"
+                            ControlToValidate="FIXO"
+                            Display="Dynamic"
+                            ValidationExpression="^[0-9]{2}-[0-9]{4}-[0-9]{4}$"
+                            ErrorMessage="Por Favor Preencher Com um Telefone Valido!" />
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">
                     <label for="CELULAR1" class="col-sm-3 control-label">Celular</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="CELULAR" CssClass="form-control" MaxLength="20" TextMode="Phone"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvCelular" ControlToValidate="CELULAR" ErrorMessage="(*) O celular é obrigatório!" ToolTip="O celular é obrigatório!" BackColor="Red"></asp:RequiredFieldValidator>
+						<asp:RegularExpressionValidator runat="server" ID="rfvCelular1"
+                            ControlToValidate="CELULAR"
+                            Display="Dynamic"
+                            ValidationExpression="^[0-9]{2}-[0-9]{5}-[0-9]{4}$"
+                            ErrorMessage="Por Favor Preencher Com um Celular Valido!" />
                     </asp:Panel>
                 </asp:Panel>
             </asp:Panel>
