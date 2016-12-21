@@ -46,7 +46,13 @@
                 <asp:Panel CssClass="form-group" runat="server">
                     <label for="CEP" class="col-sm-3 control-label">CEP</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
-                        <asp:TextBox runat="server" ID="CEP" CssClass="form-control" MaxLength="10" TextMode="SingleLine"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="CEP" CssClass="form-control" MaxLength="10" TextMode="SingleLine" AutoPostBack="true" OnTextChanged="CEP_TextChanged"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvCEP" SetFocusOnError="true"  ControlToValidate="CEP" ErrorMessage="*" ToolTip="CEP Obrigatorio" BackColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server" ID="revCEP"
+                            ControlToValidate="CEP"
+                            Display="Dynamic"
+                            ValidationExpression="^\d{5}\-?\d{3}$"
+                            ErrorMessage="Por Favor Preencher Com um CEP Valido!" />
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">

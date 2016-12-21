@@ -13,5 +13,30 @@ namespace EsporteNet.View
         {
 
         }
+        protected void CEP_TextChanged(object sender, EventArgs e)
+        {
+            WebServiceCorreios.AtendeClienteClient consultaCEP =
+               new WebServiceCorreios.AtendeClienteClient();
+
+            TextBox CEP = (TextBox)FormView2.FindControl("CEP");
+
+            if (!String.IsNullOrEmpty(CEP.Text))
+            {
+                var resposta =
+                    consultaCEP.consultaCEP(CEP.Text);
+
+                TextBox CIDADE = (TextBox)FormView2.FindControl("CIDADE");
+                CIDADE.Text = resposta.cidade;
+
+                DropDownList ESTADO = (DropDownList)FormView2.FindControl("ESTADO");
+                ESTADO.Text = resposta.uf;
+
+                TextBox BAIRRO = (TextBox)FormView2.FindControl("BAIRRO");
+                BAIRRO.Text = resposta.bairro;
+
+                TextBox ENDERECO = (TextBox)FormView2.FindControl("ENDERECO");
+                ENDERECO.Text = resposta.end;
+            }
+        }
     }
 }
