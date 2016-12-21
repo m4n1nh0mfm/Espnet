@@ -97,22 +97,55 @@ namespace EsporteNet.Models.Local
         }
 
 
-        public List<Local> ListarLocal(int cod)
+        public List<Local> ListarLocal(int cep, string bairro, string cidade, string uf)
         {
             try
             {
                 this.AbrirConexao();
-                cmd = new SqlCommand("SELECT * FROM [LOCAL_USU] WHERE @FK_COD_USU = 0 OR [FK_COD_USU] = @FK_COD_USU", con, tran);
-                if (cod == 0)
+                cmd = new SqlCommand(@"SELECT * 
+                                        FROM [LOCAL_USU] 
+                                            WHERE (@CEP = 0 OR [CEP] = @CEP) AND
+                                                    (@BAIRRO IS NULL OR [BAIRRO] = @BAIRRO) AND
+                                                        (@CIDADE IS NULL OR [CIDADE] = @CIDADE) AND
+                                                            (@UF IS NULL OR [UF] = @UF)", con, tran);
+                if (cep == 0)
                 {
-                    cmd.Parameters.AddWithValue("@FK_COD_USU", 0);
+                    cmd.Parameters.AddWithValue("@CEP", 0);
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@FK_COD_USU", cod);
+                    cmd.Parameters.AddWithValue("@CEP", cep);
                 }
 
 
+                if (String.IsNullOrEmpty(bairro))
+                {
+                    cmd.Parameters.AddWithValue("@BAIRRO", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BAIRRO", bairro);
+                }
+                
+                
+                if (String.IsNullOrEmpty(cidade))
+                {
+                    cmd.Parameters.AddWithValue("@CIDADE", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@CIDADE", cidade);
+                }
+
+
+                if (String.IsNullOrEmpty(uf))
+                {
+                    cmd.Parameters.AddWithValue("@UF", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@UF", uf);
+                }
                 List<Local> lista = new List<Local>();
                 dr = cmd.ExecuteReader();
                 if (dr.Read())

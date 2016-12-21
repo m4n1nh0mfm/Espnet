@@ -81,6 +81,36 @@ namespace EsporteNet.Models.Usuario
             }
         }
 
+        public string ObterNomeUsuario(int chave)
+        {
+            try
+            {
+
+                this.AbrirConexao();
+                cmd = new SqlCommand("SELECT * FROM [USUARIO] WHERE [COD_USU] = @COD_USU", con, tran);
+                cmd.Parameters.AddWithValue("@COD_USU", chave);
+                string nome = null;
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    nome = Convert.ToString((dr["DSC_NOME_USU"]));
+                }
+
+                if (nome == null)
+                {
+                    nome = "Nome Indisponivel";
+                }
+                return nome;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter nome do usuario: " + ex.Message);
+            }
+            finally
+            {
+                this.FecharConexao();
+            }
+        }
         public void Insert(Usuario usu)
         {
             try
