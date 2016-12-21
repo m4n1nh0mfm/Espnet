@@ -38,6 +38,8 @@ namespace EsporteNet.Models.Usuario
                 cmd = new SqlCommand("SELECT * FROM [USUARIO] WHERE [COD_USU] = @COD_USU", con, tran);
                 cmd.Parameters.AddWithValue("@COD_USU", chave);
                 Usuario usu = new Usuario();
+                Contato.Contato auxCont = new Contato.Contato();
+                Local.Local auxLoc = new Local.Local();
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
@@ -46,6 +48,25 @@ namespace EsporteNet.Models.Usuario
                     usu.Passoword = Convert.ToString((dr["PASSWORD"]));
                     usu.Cod_sup = Convert.ToInt16((dr["COD_SUP"]));
                     usu.Dsc_nome_usu = Convert.ToString((dr["DSC_NOME_USU"]));
+                    
+                    auxLoc = this.localDAO.ObterLocal(usu.Cod_usu);
+                    if (auxLoc != null)
+                    {
+                        usu.Cep = auxLoc.Cep;
+                        usu.Endereco = auxLoc.Endereco;
+                        usu.Numero = auxLoc.Numero;
+                        usu.Cidade = auxLoc.Cidade;
+                        usu.Bairro = auxLoc.Bairro;
+                        usu.Uf = auxLoc.Uf;
+                    }
+
+                    auxCont = this.contDAO.ObterContato(usu.Cod_usu);
+                    if(auxCont != null)
+                    {
+                        usu.Email = auxCont.Email;
+                        usu.Telefone = auxCont.Telefone;
+                        usu.Celular = auxCont.Celular;
+                    }
                     
                 }
                 return usu;
