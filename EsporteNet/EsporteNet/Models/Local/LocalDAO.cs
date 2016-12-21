@@ -18,7 +18,7 @@ namespace EsporteNet.Models.Local
         }
         #endregion
 
-        public Local ObterLocal(int chave)
+        public Local ObterLocal(Int64 chave)
         {
             try
             {
@@ -31,9 +31,9 @@ namespace EsporteNet.Models.Local
                 if (dr.Read())
                 {
                     loc.Fk_cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
-                    loc.Cep = Convert.ToInt16((dr["CEP"]));
+                    loc.Cep = Convert.ToString((dr["CEP"]));
                     loc.Endereco = Convert.ToString((dr["ENDEREÇO"]));
-                    loc.Numero = Convert.ToInt16((dr["NUMERO"]));
+                    loc.Numero = Convert.ToInt32((dr["NUMERO"]));
                     loc.Bairro = Convert.ToString((dr["BAIRRO"]));
                     loc.Cidade = Convert.ToString((dr["CIDADE"]));
                     loc.Uf = Convert.ToString((dr["UF"]));
@@ -152,7 +152,7 @@ namespace EsporteNet.Models.Local
                 {
                     Local loc = new Local(Convert.ToInt16((dr["FK_COD_USU"])));
                     loc.Fk_cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
-                    loc.Cep = Convert.ToInt16((dr["CEP"]));
+                    loc.Cep = Convert.ToString((dr["CEP"]));
                     loc.Endereco = Convert.ToString((dr["ENDEREÇO"]));
                     loc.Numero = Convert.ToInt16((dr["NUMERO"]));
                     loc.Bairro = Convert.ToString((dr["BAIRRO"]));

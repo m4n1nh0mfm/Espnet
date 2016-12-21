@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <asp:HyperLink class="navbar-brand" runat="server" NavigateUrl="~/View/index.aspx">Gerencial EsporteNet</asp:HyperLink>
+                <asp:HyperLink CssClass="navbar-brand" runat="server" NavigateUrl="~/View/index.aspx">Gerencial EsporteNet</asp:HyperLink>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">

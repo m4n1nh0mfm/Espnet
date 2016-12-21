@@ -7,16 +7,16 @@ namespace EsporteNet.Models.Local
 {
     public class Local
     {
-        private int fk_cod_usu;
+        private Int64 fk_cod_usu;
 
-        public int Fk_cod_usu
+        public Int64 Fk_cod_usu
         {
             get { return fk_cod_usu; }
             set { fk_cod_usu = value; }
         }
-        private int cep;
+        private String cep;
 
-        public int Cep
+        public String Cep
         {
             get { return cep; }
             set { cep = value; }

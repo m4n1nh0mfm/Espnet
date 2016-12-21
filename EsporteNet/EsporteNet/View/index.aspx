@@ -2,5 +2,5 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Image ID="Image1" class="media-object" ImageUrl="~/img/bannerfans_18575470.png" runat="server" />
+    <asp:Image ID="Image1" CssClass="media-object" ImageUrl="~/img/bannerfans_18575470.png" runat="server" />
 </asp:Content>

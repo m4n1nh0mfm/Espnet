@@ -18,7 +18,7 @@ namespace EsporteNet.Models.Contato
         }
         #endregion
 
-        public Contato ObterContato(int chave)
+        public Contato ObterContato(Int64 chave)
         {
             try
             {

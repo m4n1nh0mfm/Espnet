@@ -1,12 +1,14 @@
 ﻿using EsporteNet.Models.AcessoAoBanco;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace EsporteNet.Models.Usuario
 {
+    [DataObject(true)]
     public class UsuarioDAO: DBHelper
     {
        
@@ -111,6 +113,8 @@ namespace EsporteNet.Models.Usuario
                 this.FecharConexao();
             }
         }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public void Insert(Usuario usu)
         {
             try
@@ -168,7 +172,7 @@ namespace EsporteNet.Models.Usuario
             }
         }
 
-        
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Usuario> ListarUsuario(int cod)
         {
             try
@@ -237,7 +241,7 @@ namespace EsporteNet.Models.Usuario
             }
         }
 
-      
+        [DataObjectMethod(DataObjectMethodType.Update)]
         public void Update(Usuario usu)
         {
             try

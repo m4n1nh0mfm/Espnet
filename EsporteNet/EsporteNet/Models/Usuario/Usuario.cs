@@ -7,9 +7,9 @@ namespace EsporteNet.Models.Usuario
 {
     public class Usuario
     {
-        private int cod_usu;
+        private Int64 cod_usu;
 
-        public int Cod_usu
+        public Int64 Cod_usu
         {
             get { return cod_usu; }
             set { cod_usu = value; }
@@ -45,9 +45,9 @@ namespace EsporteNet.Models.Usuario
 
         //localizacao do usuario
      
-        private int cep;
+        private String cep;
 
-        public int Cep
+        public String Cep
         {
             get { return cep; }
             set { cep = value; }
