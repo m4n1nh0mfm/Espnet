@@ -9,12 +9,23 @@ namespace EsporteNet.Models.Usuario
 {
     public class UsuarioDAO: DBHelper
     {
+       
         #region Atributos
+        
+        private Local.Local local;
+        private Local.LocalDAO localDAO;
+        private Contato.Contato cont;
+        private Contato.ContatoDAO contDAO;
+
         #endregion
 
         #region Contrutor
         public UsuarioDAO()
         {
+            this.cont     = new Contato.Contato();
+            this.contDAO  = new Contato.ContatoDAO();
+            this.local    = new Local.Local();
+            this.localDAO = new Local.LocalDAO();
         }
         #endregion
 
@@ -71,7 +82,24 @@ namespace EsporteNet.Models.Usuario
                 cmd.Parameters.AddWithValue("@PASSWORD", usu.Passoword);
                 cmd.Parameters.AddWithValue("@COD_SUP", usu.Cod_sup);
                 cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Cod_sup);
-               
+
+                //setando localizacao
+                this.local.Fk_cod_usu = usu.Cod_usu;
+                this.local.Cep = usu.Cep;
+                this.local.Endereco = usu.Endereco;
+                this.local.Bairro = usu.Bairro;
+                this.local.Numero = usu.Numero;
+                this.local.Cidade = usu.Cidade;
+                this.local.Uf = usu.Uf;
+
+                //setando contato
+                this.cont.Fk_cod_usu = usu.Cod_usu;
+                this.cont.Email = usu.Email;
+                this.cont.Celular = usu.Celular;
+                this.cont.Telefone = usu.Telefone;
+
+                this.localDAO.Insert(local);
+                this.localDAO.Insert(local);
                 cmd.Transaction = tran;
                 cmd.ExecuteNonQuery();
                 tran.Commit();
@@ -139,6 +167,10 @@ namespace EsporteNet.Models.Usuario
                 this.AbrirConexao();
                 cmd = new SqlCommand(@"DELETE FROM [USUARIO] WHERE [COD_USU] = @COD_USU", con);
                 cmd.Parameters.AddWithValue("@COD_USU", chave);
+
+                this.localDAO.Delete(chave);
+                this.contDAO.Delete(chave);
+
                 cmd.Transaction = tran;
                 cmd.ExecuteNonQuery();
                 tran.Commit();

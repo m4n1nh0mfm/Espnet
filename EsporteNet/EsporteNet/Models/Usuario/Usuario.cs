@@ -43,6 +43,75 @@ namespace EsporteNet.Models.Usuario
             set { dsc_nome_usu = value; }
         }
 
+        //localizacao do usuario
+     
+        private int cep;
+
+        public int Cep
+        {
+            get { return cep; }
+            set { cep = value; }
+        }
+        private string endereco;
+
+        public string Endereco
+        {
+            get { return endereco; }
+            set { endereco = value; }
+        }
+        private int numero;
+
+        public int Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+        private string bairro;
+
+        public string Bairro
+        {
+            get { return bairro; }
+            set { bairro = value; }
+        }
+        private string cidade;
+
+        public string Cidade
+        {
+            get { return cidade; }
+            set { cidade = value; }
+        }
+        private string uf;
+
+        public string Uf
+        {
+            get { return uf; }
+            set { uf = value; }
+        }
+
+        //contato do usuario
+       
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+        private string telefone;
+
+        public string Telefone
+        {
+            get { return telefone; }
+            set { telefone = value; }
+        }
+        private string celular;
+
+        public string Celular
+        {
+            get { return celular; }
+            set { celular = value; }
+        }
+
         public Usuario() { }
         public Usuario(int cod_usu) 
         {
