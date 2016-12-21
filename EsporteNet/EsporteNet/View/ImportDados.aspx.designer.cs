@@ -10,33 +10,42 @@
 namespace EsporteNet.View {
     
     
-    public partial class MasterPage {
+    public partial class ImportDados {
         
         /// <summary>
-        /// head control.
+        /// DATAIMP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox DATAIMP;
         
         /// <summary>
-        /// form1 control.
+        /// rfvNome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNome;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// FILEUPLOAD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.FileUpload FILEUPLOAD;
+        
+        /// <summary>
+        /// BtnCarregar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCarregar;
     }
 }

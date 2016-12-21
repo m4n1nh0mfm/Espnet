@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -16,10 +18,10 @@ namespace EsporteNet.Model.AcessoAoBanco
         {
             try
             {
-                this.StringConexao = "Data Source=SQL5018.Smarterasp.net;Initial Catalog=DB_A0CFD7_unit;User Id=DB_A0CFD7_unit_admin;Password=unit2016";
-                this.StringConexao = ConfigurationManager.ConnectionStrings["Smarterasp"].ConnectionString;
+                //this.StringConexao = "Data Source=SQL5018.Smarterasp.net;Initial Catalog=DB_A0CFD7_unit;User Id=DB_A0CFD7_unit_admin;Password=unit2016";
+                //this.StringConexao = ConfigurationManager.ConnectionStrings["Smarterasp"].ConnectionString;
                 //this.StringConexao = ConfigurationManager.ConnectionStrings["Amazon"].ConnectionString;
-                //this.StringConexao = ConfigurationManager.ConnectionStrings["Local"].ConnectionString;
+                this.StringConexao = ConfigurationManager.ConnectionStrings["Local"].ConnectionString;
 
                 con = new SqlConnection(StringConexao);
                 con.Open();
