@@ -36,6 +36,13 @@ namespace EsporteNet.View
 
                 TextBox ENDERECO = (TextBox)FormView2.FindControl("ENDERECO");
                 ENDERECO.Text = resposta.end;
+
+                TextBox CODSUP = (TextBox)FormView2.FindControl("CODSUP");
+
+                if (CODSUP.Text.Equals(""))
+                {
+                    CODSUP.Text = "0";
+                }
             }
         }
     }

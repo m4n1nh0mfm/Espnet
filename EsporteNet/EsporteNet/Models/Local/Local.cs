@@ -28,9 +28,9 @@ namespace EsporteNet.Models.Local
             get { return endereco; }
             set { endereco = value; }
         }
-        private int numero;
+        private String numero;
 
-        public int Numero
+        public String Numero
         {
             get { return numero; }
             set { numero = value; }

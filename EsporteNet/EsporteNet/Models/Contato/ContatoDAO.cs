@@ -64,7 +64,7 @@ namespace EsporteNet.Models.Contato
                                     VALUES (@FK_COD_USU,
                                             @EMAIL,
                                             @TELEFONE,
-                                            @CELULAR) ", con);
+                                            @CELULAR) ", con, tran);
                 
                 cmd.Parameters.AddWithValue("@FK_COD_USU", cont.Fk_cod_usu);
                 cmd.Parameters.AddWithValue("@EMAIL", cont.Email);

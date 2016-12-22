@@ -33,7 +33,7 @@ namespace EsporteNet.Models.Local
                     loc.Fk_cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
                     loc.Cep = Convert.ToString((dr["CEP"]));
                     loc.Endereco = Convert.ToString((dr["ENDEREÇO"]));
-                    loc.Numero = Convert.ToInt32((dr["NUMERO"]));
+                    loc.Numero = Convert.ToString((dr["NUMERO"]));
                     loc.Bairro = Convert.ToString((dr["BAIRRO"]));
                     loc.Cidade = Convert.ToString((dr["CIDADE"]));
                     loc.Uf = Convert.ToString((dr["UF"]));
@@ -69,7 +69,7 @@ namespace EsporteNet.Models.Local
                                             @NUMERO,
                                             @BAIRRO,
                                             @CIDADE,
-                                            @UF) ", con);
+                                            @UF) ", con, tran);
 
                 cmd.Parameters.AddWithValue("@FK_COD_USU", loc.Fk_cod_usu);
                 cmd.Parameters.AddWithValue("@CEP", loc.Cep);
@@ -154,7 +154,7 @@ namespace EsporteNet.Models.Local
                     loc.Fk_cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
                     loc.Cep = Convert.ToString((dr["CEP"]));
                     loc.Endereco = Convert.ToString((dr["ENDEREÇO"]));
-                    loc.Numero = Convert.ToInt16((dr["NUMERO"]));
+                    loc.Numero = Convert.ToString((dr["NUMERO"]));
                     loc.Bairro = Convert.ToString((dr["BAIRRO"]));
                     loc.Cidade = Convert.ToString((dr["CIDADE"]));
                     loc.Uf = Convert.ToString((dr["UF"]));

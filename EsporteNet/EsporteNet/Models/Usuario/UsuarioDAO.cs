@@ -31,7 +31,8 @@ namespace EsporteNet.Models.Usuario
         }
         #endregion
 
-        public Usuario ObterUsuario(int chave)
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Usuario ObterUsuario(Int64 chave)
         {
             try
             {
@@ -45,10 +46,10 @@ namespace EsporteNet.Models.Usuario
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    usu.Cod_usu = Convert.ToInt16((dr["COD_USU"]));
+                    usu.Cod_usu = Convert.ToInt64((dr["COD_USU"]));
                     usu.Dsc_username = Convert.ToString((dr["DSC_USERNAME"]));
                     usu.Passoword = Convert.ToString((dr["PASSWORD"]));
-                    usu.Cod_sup = Convert.ToInt16((dr["COD_SUP"]));
+                    usu.Cod_sup = Convert.ToInt64((dr["COD_SUP"]));
                     usu.Dsc_nome_usu = Convert.ToString((dr["DSC_NOME_USU"]));
                     
                     auxLoc = this.localDAO.ObterLocal(usu.Cod_usu);
@@ -120,7 +121,9 @@ namespace EsporteNet.Models.Usuario
             try
             {
                 this.AbrirConexao();
-                cmd = new SqlCommand(@"INSERT INTO [USUARIO] 
+                Int64 _id = this.ObterCodigo();
+                cmd = new SqlCommand(@" SET IDENTITY_INSERT [USUARIO] ON; 
+                                        INSERT INTO [USUARIO] 
                                             ([COD_USU],
                                              [DSC_USERNAME],
                                              [PASSWORD],
@@ -130,7 +133,8 @@ namespace EsporteNet.Models.Usuario
                                             @DSC_USERNAME,
                                             @PASSWORD,
                                             @COD_SUP,
-                                            @DSC_NOME_USU) ", con);
+                                            @DSC_NOME_USU) ; select @@identity;
+                                            SET IDENTITY_INSERT [USUARIO] OFF; ", con, tran);
                 
                 cmd.Parameters.AddWithValue("@COD_USU", usu.Cod_usu);
                 cmd.Parameters.AddWithValue("@DSC_USERNAME", usu.Dsc_username);
@@ -138,8 +142,13 @@ namespace EsporteNet.Models.Usuario
                 cmd.Parameters.AddWithValue("@COD_SUP", usu.Cod_sup);
                 cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Cod_sup);
 
+                cmd.Transaction = tran;
+                cmd.ExecuteNonQuery();
+
+                //Int64 _id = Convert.ToInt64(cmd.ExecuteScalar());
+
                 //setando localizacao
-                this.local.Fk_cod_usu = usu.Cod_usu;
+                this.local.Fk_cod_usu = _id;
                 this.local.Cep = usu.Cep;
                 this.local.Endereco = usu.Endereco;
                 this.local.Bairro = usu.Bairro;
@@ -148,15 +157,14 @@ namespace EsporteNet.Models.Usuario
                 this.local.Uf = usu.Uf;
 
                 //setando contato
-                this.cont.Fk_cod_usu = usu.Cod_usu;
+                this.cont.Fk_cod_usu = _id;
                 this.cont.Email = usu.Email;
                 this.cont.Celular = usu.Celular;
                 this.cont.Telefone = usu.Telefone;
 
                 this.localDAO.Insert(local);
-                this.localDAO.Insert(local);
-                cmd.Transaction = tran;
-                cmd.ExecuteNonQuery();
+                this.contDAO.Insert(cont);
+
                 tran.Commit();
 
 
@@ -173,7 +181,7 @@ namespace EsporteNet.Models.Usuario
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<Usuario> ListarUsuario(int cod)
+        public List<Usuario> ListarUsuario(Int64 cod)
         {
             try
             {
@@ -193,11 +201,11 @@ namespace EsporteNet.Models.Usuario
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    Usuario usu = new Usuario(Convert.ToInt16((dr["COD_USU"])));
-                    usu.Cod_usu = Convert.ToInt16((dr["COD_USU"]));
+                    Usuario usu = new Usuario(Convert.ToInt64((dr["COD_USU"])));
+                    usu.Cod_usu = Convert.ToInt64((dr["COD_USU"]));
                     usu.Dsc_username = Convert.ToString((dr["DSC_USERNAME"]));
                     usu.Passoword = Convert.ToString((dr["PASSWORD"]));
-                    usu.Cod_sup = Convert.ToInt16((dr["COD_SUP"]));
+                    usu.Cod_sup = Convert.ToInt64((dr["COD_SUP"]));
                     usu.Dsc_nome_usu = Convert.ToString((dr["DSC_NOME_USU"]));
                     lista.Add(usu);
                 }
@@ -214,7 +222,32 @@ namespace EsporteNet.Models.Usuario
             }
         }
 
-         
+        public Int64 ObterCodigo()
+        {
+            try
+            {
+                //this.AbrirConexao();
+                String query = "SELECT MAX([COD_USU]) as COD_USU FROM [USUARIO]";
+                cmd = new SqlCommand(query, con , tran);
+                Int64 inst = 0;
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    if (dr.HasRows)
+                    {
+                        inst = Convert.ToInt64((dr["COD_USU"] == DBNull.Value ? 0 : dr["COD_USU"]));
+                        dr.Close();
+                    }
+                }
+                inst++;
+                return inst;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter Codigo do Usuario: " + ex.Message);
+            }
+        }
+
         public void Delete(int chave)
         {
             try

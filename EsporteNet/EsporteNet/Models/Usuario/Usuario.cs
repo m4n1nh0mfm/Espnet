@@ -28,9 +28,9 @@ namespace EsporteNet.Models.Usuario
             get { return passoword; }
             set { passoword = value; }
         }
-        private int cod_sup;
+        private Int64 cod_sup;
 
-        public int Cod_sup
+        public Int64 Cod_sup
         {
             get { return cod_sup; }
             set { cod_sup = value; }
@@ -59,9 +59,9 @@ namespace EsporteNet.Models.Usuario
             get { return endereco; }
             set { endereco = value; }
         }
-        private int numero;
+        private String numero;
 
-        public int Numero
+        public String Numero
         {
             get { return numero; }
             set { numero = value; }
@@ -113,7 +113,7 @@ namespace EsporteNet.Models.Usuario
         }
 
         public Usuario() { }
-        public Usuario(int cod_usu) 
+        public Usuario(Int64 cod_usu) 
         {
             this.cod_usu = cod_usu;
         }
