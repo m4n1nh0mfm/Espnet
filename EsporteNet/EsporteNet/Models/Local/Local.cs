@@ -58,9 +58,17 @@ namespace EsporteNet.Models.Local
         }
 
         public Local() { }
-        public Local(int fk_cod_usu) 
+        public Local(Int64 fk_cod_usu) 
         {
             this.fk_cod_usu = fk_cod_usu;
         }
+
+        public String nome_usu;
+        public string Nome_usu
+        {
+            get { return nome_usu; }
+            set { nome_usu = value; }
+        }
+
     }
 }

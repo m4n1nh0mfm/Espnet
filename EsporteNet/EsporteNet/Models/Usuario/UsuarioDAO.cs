@@ -18,6 +18,7 @@ namespace EsporteNet.Models.Usuario
         private Local.LocalDAO localDAO;
         private Contato.Contato cont;
         private Contato.ContatoDAO contDAO;
+        string query;
 
         #endregion
 
@@ -84,7 +85,89 @@ namespace EsporteNet.Models.Usuario
             }
         }
 
-        public string ObterNomeUsuario(int chave)
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Usuario> ListarLocal(string cep, string bairro, string cidade, string uf)
+        {
+            try
+            {
+                this.AbrirConexao();
+                query = @"select l.FK_COD_USU, CEP, ENDERECO, NUMERO, BAIRRO, CIDADE, UF, EMAIL, CELULAR 
+	                          from [LOCAL_USU] as l join [CONTATO_USU] as c on l.FK_COD_USU = c.FK_COD_USU
+                                   WHERE (@CEP IS NULL OR CEP = @CEP) AND
+                                         (@BAIRRO IS NULL OR BAIRRO LIKE '%' + @BAIRRO + '%') AND
+                                         (@CIDADE IS NULL OR CIDADE LIKE '%' + @CIDADE + '%') AND
+                                         (@UF IS NULL OR UF = @UF)";
+
+                cmd = new SqlCommand(query, tran.Connection, tran);
+                if (String.IsNullOrEmpty(cep))
+                {
+                    cmd.Parameters.AddWithValue("@CEP", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@CEP", cep);
+                }
+
+
+                if (String.IsNullOrEmpty(bairro))
+                {
+                    cmd.Parameters.AddWithValue("@BAIRRO", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BAIRRO", bairro);
+                }
+
+
+                if (String.IsNullOrEmpty(cidade))
+                {
+                    cmd.Parameters.AddWithValue("@CIDADE", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@CIDADE", cidade);
+                }
+
+
+                if (String.IsNullOrEmpty(uf))
+                {
+                    cmd.Parameters.AddWithValue("@UF", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@UF", uf);
+                }
+                List<Usuario> lista = new List<Usuario>();
+                dr = cmd.ExecuteReader();
+                Usuario usu = new Usuario();
+                if (dr.Read())
+                {
+                    usu.Cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
+                    usu.Cep = Convert.ToString((dr["CEP"]));
+                    usu.Endereco = Convert.ToString((dr["ENDERECO"]));
+                    usu.Numero = Convert.ToString((dr["NUMERO"]));
+                    usu.Bairro = Convert.ToString((dr["BAIRRO"]));
+                    usu.Cidade = Convert.ToString((dr["CIDADE"]));
+                    usu.Uf = Convert.ToString((dr["UF"]));
+                    usu.Email = Convert.ToString((dr["EMAIL"]));
+                    usu.Celular = Convert.ToString((dr["CELULAR"]));
+                    usu.Dsc_nome_usu = ObterNomeUsuario(usu.Cod_usu);
+                    lista.Add(usu);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao listar os Locais: " + ex.Message);
+            }
+            finally
+            {
+                this.FecharConexao();
+            }
+        }
+
+        public string ObterNomeUsuario(Int64 chave)
         {
             try
             {
@@ -121,31 +204,29 @@ namespace EsporteNet.Models.Usuario
             try
             {
                 this.AbrirConexao();
-                Int64 _id = this.ObterCodigo();
-                cmd = new SqlCommand(@" SET IDENTITY_INSERT [USUARIO] ON; 
-                                        INSERT INTO [USUARIO] 
-                                            ([COD_USU],
-                                             [DSC_USERNAME],
+                //Int64 _id = this.ObterCodigo();
+                cmd = new SqlCommand(@" INSERT INTO [USUARIO] 
+                                            ([DSC_USERNAME],
                                              [PASSWORD],
                                              [COD_SUP],
                                              [DSC_NOME_USU]) 
-                                    VALUES (@COD_USU,
-                                            @DSC_USERNAME,
+                                    VALUES (@DSC_USERNAME,
                                             @PASSWORD,
                                             @COD_SUP,
-                                            @DSC_NOME_USU) ; select @@identity;
-                                            SET IDENTITY_INSERT [USUARIO] OFF; ", con, tran);
+                                            @DSC_NOME_USU)
+                                            ", tran.Connection, tran);
                 
-                cmd.Parameters.AddWithValue("@COD_USU", usu.Cod_usu);
+                //cmd.Parameters.AddWithValue("@COD_USU", usu.Cod_usu);
                 cmd.Parameters.AddWithValue("@DSC_USERNAME", usu.Dsc_username);
                 cmd.Parameters.AddWithValue("@PASSWORD", usu.Passoword);
                 cmd.Parameters.AddWithValue("@COD_SUP", usu.Cod_sup);
-                cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Cod_sup);
+                cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Dsc_nome_usu);
 
                 cmd.Transaction = tran;
                 cmd.ExecuteNonQuery();
 
-                //Int64 _id = Convert.ToInt64(cmd.ExecuteScalar());
+                cmd = new SqlCommand("select @@identity", tran.Connection, tran);
+                Int64 _id = Convert.ToInt64(cmd.ExecuteScalar());
 
                 //setando localizacao
                 this.local.Fk_cod_usu = _id;

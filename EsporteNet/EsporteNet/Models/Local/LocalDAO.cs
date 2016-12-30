@@ -1,15 +1,21 @@
 ﻿using EsporteNet.Models.AcessoAoBanco;
+using EsporteNet.Models.Usuario;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace EsporteNet.Models.Local
 {
+    [DataObject(true)]
     public class LocalDAO : DBHelper
     {
+        private UsuarioDAO usuarioDAO;
+
         #region Atributos
+        String query;
         #endregion
 
         #region Contrutor
@@ -96,21 +102,22 @@ namespace EsporteNet.Models.Local
             }
         }
 
-
-        public List<Local> ListarLocal(int cep, string bairro, string cidade, string uf)
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Local> ListarLocal(string cep, string bairro, string cidade, string uf)
         {
             try
             {
                 this.AbrirConexao();
-                cmd = new SqlCommand(@"SELECT * 
-                                        FROM [LOCAL_USU] 
-                                            WHERE (@CEP = 0 OR [CEP] = @CEP) AND
-                                                    (@BAIRRO IS NULL OR [BAIRRO] = @BAIRRO) AND
-                                                        (@CIDADE IS NULL OR [CIDADE] = @CIDADE) AND
-                                                            (@UF IS NULL OR [UF] = @UF)", con, tran);
-                if (cep == 0)
+                query = @"SELECT * FROM [LOCAL_USU] 
+                                   WHERE (@CEP IS NULL OR CEP = @CEP) AND
+                                         (@BAIRRO IS NULL OR BAIRRO = @BAIRRO) AND
+                                         (@CIDADE IS NULL OR CIDADE = @CIDADE) AND
+                                         (@UF IS NULL OR UF = @UF)";
+
+                cmd = new SqlCommand(query, tran.Connection, tran);
+                if (String.IsNullOrEmpty(cep))
                 {
-                    cmd.Parameters.AddWithValue("@CEP", 0);
+                    cmd.Parameters.AddWithValue("@CEP", DBNull.Value);
                 }
                 else
                 {
@@ -150,10 +157,12 @@ namespace EsporteNet.Models.Local
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
+                    usuarioDAO = new UsuarioDAO();
                     Local loc = new Local(Convert.ToInt16((dr["FK_COD_USU"])));
                     loc.Fk_cod_usu = Convert.ToInt16((dr["FK_COD_USU"]));
+                    loc.Nome_usu = usuarioDAO.ObterNomeUsuario(loc.Fk_cod_usu);
                     loc.Cep = Convert.ToString((dr["CEP"]));
-                    loc.Endereco = Convert.ToString((dr["ENDEREÇO"]));
+                    loc.Endereco = Convert.ToString((dr["ENDERECO"]));
                     loc.Numero = Convert.ToString((dr["NUMERO"]));
                     loc.Bairro = Convert.ToString((dr["BAIRRO"]));
                     loc.Cidade = Convert.ToString((dr["CIDADE"]));

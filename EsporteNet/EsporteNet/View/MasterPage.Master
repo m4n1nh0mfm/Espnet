@@ -32,7 +32,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Relações<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Relação de Usuarios</a></li>
+                            <li><asp:HyperLink runat="server" NavigateUrl="~/View/ListUsuarios.aspx">Relação de Usuarios</asp:HyperLink></li>
                             <li><a href="#">Movimentação</a></li>
                             <li><a href="#">Gráfico</a></li>
                         </ul>
