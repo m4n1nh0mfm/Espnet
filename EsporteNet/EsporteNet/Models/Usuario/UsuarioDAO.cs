@@ -49,7 +49,6 @@ namespace EsporteNet.Models.Usuario
                 {
                     usu.Cod_usu = Convert.ToInt64((dr["COD_USU"]));
                     usu.Dsc_username = Convert.ToString((dr["DSC_USERNAME"]));
-                    usu.Passoword = Convert.ToString((dr["PASSWORD"]));
                     usu.Cod_sup = Convert.ToInt64((dr["COD_SUP"]));
                     usu.Dsc_nome_usu = Convert.ToString((dr["DSC_NOME_USU"]));
                     
@@ -83,6 +82,46 @@ namespace EsporteNet.Models.Usuario
             {
                 this.FecharConexao();
             }
+        }
+
+        public Boolean ValidaUsuario(String username, String senha)
+        {
+            Boolean value = false;
+            try
+            {
+
+                this.AbrirConexao();
+                cmd = new SqlCommand("SELECT * FROM [USUARIO] WHERE [DSC_USERNAME] = @DSC_USERNAME AND [PASSWORD] = @PASSWORD", tran.Connection, tran);
+                cmd.Parameters.AddWithValue("@DSC_USERNAME", username);
+                cmd.Parameters.AddWithValue("@PASSWORD", senha);
+                Usuario usu = new Usuario();
+                Contato.Contato auxCont = new Contato.Contato();
+                Local.Local auxLoc = new Local.Local();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        usu.Dsc_username = Convert.ToString(String.IsNullOrEmpty(dr["DSC_USERNAME"].ToString()) ? "" : dr["DSC_USERNAME"]);
+                        usu.Passoword = Convert.ToString(String.IsNullOrEmpty(dr["PASSWORD"].ToString()) ? "" : dr["PASSWORD"]);
+                        usu.Cod_sup = Convert.ToInt64(dr["COD_SUP"] == DBNull.Value ? 0 : dr["COD_SUP"]);
+                        if (username.Equals(usu.Dsc_username) && senha.Equals(usu.Passoword) && usu.Cod_sup.Equals(0))
+                        {
+                            value = true;
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter dados do Usuario: " + ex.Message);
+            }
+            finally
+            {
+                this.FecharConexao();
+            }
+            return value;
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
@@ -364,19 +403,35 @@ namespace EsporteNet.Models.Usuario
 
                 cmd = new SqlCommand(@"UPDATE [USUARIO] SET 
                                                         [DSC_USERNAME]         = @DSC_USERNAME,
-                                                        [PASSWORD]      = @PASSWORD, 
                                                         [COD_SUP]      = @COD_SUP,
                                                         [DSC_NOME_USU]      = @DSC_NOME_USU
-                                                 WHERE [COD_USU] = @COD_USU", con);
+                                                 WHERE [COD_USU] = @COD_USU", tran.Connection, tran);
 
                 cmd.Parameters.AddWithValue("@COD_USU", usu.Cod_usu);
                 cmd.Parameters.AddWithValue("@DSC_USERNAME", usu.Dsc_username);
-                cmd.Parameters.AddWithValue("@PASSWORD", usu.Passoword);
                 cmd.Parameters.AddWithValue("@COD_SUP", usu.Cod_sup);
-                cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Cod_sup);
+                cmd.Parameters.AddWithValue("@DSC_NOME_USU", usu.Dsc_nome_usu);
 
                 cmd.Transaction = tran;
                 cmd.ExecuteNonQuery();
+
+                this.local.Fk_cod_usu = usu.Cod_usu;
+                this.local.Cep = usu.Cep;
+                this.local.Endereco = usu.Endereco;
+                this.local.Bairro = usu.Bairro;
+                this.local.Numero = usu.Numero;
+                this.local.Cidade = usu.Cidade;
+                this.local.Uf = usu.Uf;
+
+                //setando contato
+                this.cont.Fk_cod_usu = usu.Cod_usu;
+                this.cont.Email = usu.Email;
+                this.cont.Celular = usu.Celular;
+                this.cont.Telefone = usu.Telefone;
+
+                this.localDAO.Update(local);
+                this.contDAO.Update(cont);
+
                 tran.Commit();
 
             }
@@ -386,7 +441,7 @@ namespace EsporteNet.Models.Usuario
                 throw new Exception("Erro ao autalizar os dados do usuario" + ex.Message);
             }
             finally
-            {
+            {               
                 this.FecharConexao();
             }
 

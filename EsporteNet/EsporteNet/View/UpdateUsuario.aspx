@@ -1,37 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.Master" AutoEventWireup="true" CodeBehind="CadUsuario.aspx.cs" Inherits="EsporteNet.View.CadUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.Master" AutoEventWireup="true" CodeBehind="UpdateUsuario.aspx.cs" Inherits="EsporteNet.View.UpdateUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:FormView ID="FormView2" DefaultMode="Insert" Width="100%" runat="server" DataSourceID="ObjectDataSource1">
-        <InsertItemTemplate>
+    <asp:FormView ID="FormView2" DataKeyNames="Cod_usu" DefaultMode="Edit" Width="100%" runat="server" DataSourceID="ObjectDataSource1">
+        <EditItemTemplate>
             <asp:Panel ID="USUARIO" CssClass="form-group" runat="server">
                 <h2 class="text-center">Cadastro de Usuário</h2>
                 <asp:Panel CssClass="form-group" runat="server">
                     <label for="NOME" class="col-sm-3 control-label">Nome do Usuário</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="NOME" Text='<%# Bind("Dsc_nome_usu") %>' CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvNome" SetFocusOnError="true"  ControlToValidate="NOME" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvNome" SetFocusOnError="true" ControlToValidate="NOME" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">
                     <label for="USER" class="col-sm-3 control-label">Usuario</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
-                        <asp:TextBox runat="server" ID="USER" Text='<%# Bind("Dsc_username") %>' CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="RequiredFieldValidator1" SetFocusOnError="true"  ControlToValidate="USER" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
-                    </asp:Panel>
-                </asp:Panel>
-                <asp:Panel CssClass="form-group" runat="server">
-                    <label for="SENHA" class="col-sm-3 control-label">Senha</label>
-                    <asp:Panel runat="server" CssClass="col-sm-9">
-                        <asp:TextBox runat="server" ID="SENHA" CssClass="form-control" MaxLength="32" TextMode="Password"></asp:TextBox>
-                    </asp:Panel>
-                </asp:Panel>
-                <asp:Panel CssClass="form-group" runat="server">
-                    <label for="RSENHA" class="col-sm-3 control-label">Repetir Senha</label>
-                    <asp:Panel runat="server" CssClass="col-sm-9">
-                        <asp:TextBox runat="server" ID="RSENHA" Text='<%# Bind("Passoword") %>' CssClass="form-control" MaxLength="32" TextMode="Password"></asp:TextBox>
-                        <asp:CompareValidator runat="server" ID="cvRSENHA" ControlToCompare="SENHA" ControlToValidate="RSENHA" Display="Dynamic" ForeColor="Red" ErrorMessage="*A senha não confere"></asp:CompareValidator>
+                        <asp:TextBox runat="server" ID="USER" ReadOnly="true" Text='<%# Bind("Dsc_username") %>' CssClass="form-control" MaxLength="30" TextMode="SingleLine"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="RequiredFieldValidator1" SetFocusOnError="true" ControlToValidate="USER" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red"></asp:RequiredFieldValidator>
                     </asp:Panel>
                 </asp:Panel>
                 <asp:Panel CssClass="form-group" runat="server">
@@ -47,7 +34,7 @@
                     <label for="CEP" class="col-sm-3 control-label">CEP</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="CEP" Text='<%# Bind("Cep") %>' CssClass="form-control" MaxLength="10" TextMode="SingleLine" AutoPostBack="true" OnTextChanged="CEP_TextChanged"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ID="rfvCEP" SetFocusOnError="true" Display="Dynamic"  ControlToValidate="CEP" ErrorMessage="*" ToolTip="CEP Obrigatorio" BackColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvCEP" Display="Dynamic" SetFocusOnError="true" ControlToValidate="CEP" ErrorMessage="*" ToolTip="CEP Obrigatorio" BackColor="Red"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" ID="revCEP"
                             ControlToValidate="CEP"
                             Display="Dynamic"
@@ -116,7 +103,7 @@
                     <label for="EMAIL" class="col-sm-3 control-label">Email</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="EMAIL" Text='<%# Bind("Email") %>' CssClass="form-control" MaxLength="200" TextMode="Email"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvEMAIL" SetFocusOnError="true"  ControlToValidate="EMAIL" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red">
+                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvEMAIL" SetFocusOnError="true" ControlToValidate="EMAIL" ErrorMessage="*Campo Obrigatorio!" ToolTip="Campo Obrigatorio!" BackColor="Red">
                         </asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator runat="server" ID="revEMAIL1"
                             ControlToValidate="EMAIL"
@@ -130,7 +117,7 @@
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="FIXO" Text='<%# Bind("Telefone") %>' CssClass="form-control" MaxLength="20" TextMode="Phone"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="rfvFixo" Display="Dynamic" ControlToValidate="FIXO" ErrorMessage="(*) O telefone fixo é obrigatório!" ToolTip="O telefone fixo é obrigatório!" BackColor="Red"></asp:RequiredFieldValidator>
-						<asp:RegularExpressionValidator runat="server" ID="rqvFixo1"
+                        <asp:RegularExpressionValidator runat="server" ID="rqvFixo1"
                             ControlToValidate="FIXO"
                             Display="Dynamic"
                             ValidationExpression="^[0-9]{2}[0-9]{4}[0-9]{4}$"
@@ -141,8 +128,8 @@
                     <label for="CELULAR1" class="col-sm-3 control-label">Celular</label>
                     <asp:Panel runat="server" CssClass="col-sm-9">
                         <asp:TextBox runat="server" ID="CELULAR" Text='<%# Bind("Celular") %>' CssClass="form-control" MaxLength="20" TextMode="Phone"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" Display="Dynamic" ID="rfvCelular" ControlToValidate="CELULAR" ErrorMessage="(*) O celular é obrigatório!" ToolTip="O celular é obrigatório!" BackColor="Red"></asp:RequiredFieldValidator>
-						<asp:RegularExpressionValidator runat="server" ID="rfvCelular1"
+                        <asp:RequiredFieldValidator runat="server" ID="rfvCelular" Display="Dynamic" ControlToValidate="CELULAR" ErrorMessage="(*) O celular é obrigatório!" ToolTip="O celular é obrigatório!" BackColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server" ID="rfvCelular1"
                             ControlToValidate="CELULAR"
                             Display="Dynamic"
                             ValidationExpression="^[0-9]{2}[0-9]{5}[0-9]{4}$"
@@ -154,13 +141,16 @@
                 <asp:Panel runat="server" CssClass="col-sm-3">
                 </asp:Panel>
                 <asp:Panel runat="server" CssClass="col-sm-6">
-                    <asp:Button runat="server" ID="BtnSalvar" CssClass="btn btn-success btn-block" CommandName="Insert" Text="Salvar"></asp:Button>
+                    <asp:Button runat="server" ID="BtnSalvar" CssClass="btn btn-success btn-block" CommandName="Update" Text="Salvar"></asp:Button>
                 </asp:Panel>
                 <asp:Panel runat="server" CssClass="col-sm-3">
                 </asp:Panel>
             </asp:Panel>
-        </InsertItemTemplate>
+        </EditItemTemplate>
     </asp:FormView>
-    <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" DataObjectTypeName="EsporteNet.Models.Usuario.Usuario" InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="ListarUsuario" TypeName="EsporteNet.Models.Usuario.UsuarioDAO">
+    <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" DataObjectTypeName="EsporteNet.Models.Usuario.Usuario" OldValuesParameterFormatString="original_{0}" SelectMethod="ObterUsuario" TypeName="EsporteNet.Models.Usuario.UsuarioDAO" UpdateMethod="Update">
+        <SelectParameters>
+            <asp:QueryStringParameter QueryStringField="Cod_usu" Name="chave" Type="Int64"></asp:QueryStringParameter>
+        </SelectParameters>
     </asp:ObjectDataSource>
 </asp:Content>

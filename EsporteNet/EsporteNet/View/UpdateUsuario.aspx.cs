@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EsporteNet.View
 {
-    public partial class CadUsuario : System.Web.UI.Page
+    public partial class UpdateUsuario : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,7 +46,6 @@ namespace EsporteNet.View
                     BAIRRO.Text = "";
                     ENDERECO.Text = "";
                 }
-
                 TextBox CODSUP = (TextBox)FormView2.FindControl("CODSUP");
 
                 if (CODSUP.Text.Equals(""))

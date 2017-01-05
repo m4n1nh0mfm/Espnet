@@ -81,6 +81,11 @@
             <asp:BoundField DataField="Uf" HeaderText="UF" SortExpression="Uf"></asp:BoundField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
             <asp:BoundField DataField="Celular" HeaderText="Celular" SortExpression="Celular"></asp:BoundField>
+            <asp:TemplateField HeaderText="AÇÕES">
+                <ItemTemplate>
+                    <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl='<%# string.Format("~/View/UpdateUsuario.aspx?Cod_usu={0}", Eval("Cod_usu")) %>'>Editar</asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
     <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" OldValuesParameterFormatString="original_{0}" SelectMethod="ListarLocal" TypeName="EsporteNet.Models.Usuario.UsuarioDAO">

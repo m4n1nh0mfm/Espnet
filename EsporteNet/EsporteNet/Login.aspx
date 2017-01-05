@@ -82,9 +82,9 @@
                         <span class="input-group-addon" id="sizing-addon1">
                             <i class="fa fa-lock"></i>
                         </span>
-                       <input type="password" class="form-control" name="Password" placeholder="Password" required="">         	  
+                       <asp:TexBox type="password" class="form-control" name="Password" placeholder="Password" required="">         	  
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Entrar" type="Submit">Entrar</button>  			
+                    <asp:Button CssClass="btn btn-lg btn-primary btn-block" runat="server" Text="Login" ID="Login" />  			
                 </form>			
             </div>
 </div>
