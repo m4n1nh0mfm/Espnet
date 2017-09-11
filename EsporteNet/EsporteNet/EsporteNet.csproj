@@ -101,11 +101,72 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\bannerfans_18575470.png" />
+    <Content Include="img\favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="js\bootstrap.min.js.download" />
     <Content Include="js\jquery-1.10.2.min.js.download" />
     <Content Include="Login.cshtml" />
+    <None Include="Service References\WebServiceCorreios\configuration.svcinfo" />
+    <None Include="Service References\WebServiceCorreios\configuration91.svcinfo" />
+    <None Include="Service References\WebServiceCorreios\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </None>
+    <Content Include="View\CadUsuario.aspx" />
+    <Content Include="View\ImportDados.aspx" />
+    <Content Include="View\index.aspx" />
+    <Content Include="View\ListUsuarios.aspx" />
     <Content Include="View\MasterPage.Master" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Service References\WebServiceCorreios\AtendeClienteService.wsdl" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.assuntoPIMaster.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.bloquearObjetoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.buscaClienteResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.buscaContratoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.buscaPagamentoEntregaResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.buscaServicosResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.cancelarObjetoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.cancelarPedidoScolResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.clienteERP.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.consultaCEPResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.consultarPedidosInformacaoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.consultaSROResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.contratoERP.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.embalagemLRSMaster.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.enderecoERP.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.fechaPlpResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.fechaPlpVariosServicosResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.geraDigitoVerificadorEtiquetasResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.getStatusCartaoPostagemResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.getStatusPLPResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.integrarUsuarioScolResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.mensagemRetornoPIMaster.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.motivoPIMaster.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.obterAssuntosPIResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.obterClienteAtualizacaoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.obterEmbalagemLRSResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.obterMensagemRetornoPIResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.obterMotivosPIResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.registrarPedidosInformacaoResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.retorno.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.retornoCancelamentoTO.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.servicoERP.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.solicitaEtiquetasResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.solicitaPLPResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.solicitarPostagemScolResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.solicitaXmlPlpResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.statusCartao.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.statusPlp.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.validaEtiquetaPLPResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.validaPlpResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.validarPostagemReversaResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.validarPostagemSimultaneaResponse.datasource" />
+    <Content Include="Service References\WebServiceCorreios\EsporteNet.WebServiceCorreios.verificaDisponibilidadeServicoResponse.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,6 +179,7 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\fullscreen.css" />
     <Content Include="Login.aspx" />
+    <Content Include="View\UpdateUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,13 +190,58 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AcessoAoBanco\DBHelper.cs" />
+    <Compile Include="Models\Contato\Contato.cs" />
+    <Compile Include="Models\Contato\ContatoDAO.cs" />
+    <Compile Include="Models\Local\Local.cs" />
+    <Compile Include="Models\Local\LocalDAO.cs" />
+    <Compile Include="Models\Movimentacao\Movimentacao.cs" />
+    <Compile Include="Models\Movimentacao\MovimentacaoDAO.cs" />
+    <Compile Include="Models\Usuario\Usuario.cs" />
+    <Compile Include="Models\Usuario\UsuarioDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\WebServiceCorreios\Reference.cs" />
+    <Compile Include="Service References\WebServiceCorreios\Reference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="View\CadUsuario.aspx.cs">
+      <DependentUpon>CadUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\CadUsuario.aspx.designer.cs">
+      <DependentUpon>CadUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportDados.aspx.cs">
+      <DependentUpon>ImportDados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportDados.aspx.designer.cs">
+      <DependentUpon>ImportDados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListUsuarios.aspx.cs">
+      <DependentUpon>ListUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListUsuarios.aspx.designer.cs">
+      <DependentUpon>ListUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateUsuario.aspx.cs">
+      <DependentUpon>UpdateUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdateUsuario.aspx.designer.cs">
+      <DependentUpon>UpdateUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
